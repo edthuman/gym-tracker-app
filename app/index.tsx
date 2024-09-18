@@ -1,12 +1,24 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function Index() {
+import {
+  useFonts,
+  Ubuntu_500Medium,
+} from '@expo-google-fonts/ubuntu';
 
-  return <View style={styles.page}>
-    <View style={styles.view} >
-      <Text style={styles.text}>SESH</Text>
+export default function Index() {
+  let [fontsLoaded] = useFonts({ Ubuntu_500Medium })
+  
+  return fontsLoaded ? (
+    <View style={styles.page}>
+      <View style={styles.view} >
+        <Text style={styles.text}>SESH</Text>
+      </View>
     </View>
-  </View>
+  ) : (
+    <View style={styles.loadingView}>
+      <Text style={styles.text}>App loading...</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -30,7 +42,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     fontSize: 50,
     color: "white",
+    fontFamily: "Ubuntu_500Medium",
     borderRadius: 9,
     overflow: "hidden"
+  },
+  loadingView: {
+      flex: 1,
+      height: "30%",
+      backgroundColor: "blue",
+      justifyContent: "center",
+      alignItems: 'center',
+      borderColor: "white",
   }
 })
