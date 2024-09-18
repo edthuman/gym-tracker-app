@@ -12,13 +12,13 @@ export default function Index() {
   return fontsLoaded ? (
     <View style={styles.page}>
       <View style={styles.header} >
-        <Text style={styles.text}>SESH</Text>
+        <Text style={styles.title}>SESH</Text>
       </View>
       <HomeButtons/>
     </View>
   ) : (
     <View style={styles.loadingView}>
-      <Text style={styles.text}>App loading...</Text>
+      <Text style={styles.loadingMessage}>App loading...</Text>
     </View>
   )
 }
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: "white"
   },
-  text: {
+  title: {
     textAlign: "center",
     backgroundColor: "#2f2b21",
     paddingVertical: 10,
@@ -53,5 +53,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: 'center',
     borderColor: "white"
+  },
+  loadingMessage: {
+    textAlign: "center",
+    fontSize: 50,
+    color: "white",
+    fontFamily: "Ubuntu_500Medium",
   }
 })
