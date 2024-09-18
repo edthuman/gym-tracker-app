@@ -1,9 +1,13 @@
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 export default function HomeButtons () {
     return <View style={styles.buttonsView}>
-    <Text style={styles.signUp}>Sign Up</Text>
-    <Text style={styles.logIn}>Log In</Text>
+    <TouchableOpacity style={styles.signUp}>
+      <Text style={styles.text}>Sign Up</Text>
+    </TouchableOpacity>
+    <TouchableOpacity style={styles.logIn}>
+      <Text style={styles.text}>Log In</Text>
+    </TouchableOpacity>
   </View>
 }
 
@@ -16,25 +20,20 @@ const styles = StyleSheet.create({
       paddingBottom: "5%"
     },
     signUp: {
-      textAlign: "center",
       backgroundColor: "#539E75",
-      paddingVertical: 12,
-      fontSize: 50,
-      color: "white",
-      fontFamily: "Ubuntu_400Regular",
-      borderRadius: 9,
-      overflow: "hidden"
+      borderRadius: 9
     },
     logIn: {
-      textAlign: "center",
+      borderRadius: 9,
+      borderStyle: "solid",
+      borderWidth: 4,
+      borderColor: "white"
+    },
+    text: {
       paddingVertical: 12,
-      fontSize: 50,
+      textAlign: "center",
       color: "white",
       fontFamily: "Ubuntu_400Regular",
-      borderRadius: 9,
-      borderColor: "white",
-      borderWidth: 4,
-      borderStyle: "dashed",
-      overflow: "hidden"
+      fontSize: 50,
     }
   })
