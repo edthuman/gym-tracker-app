@@ -8,9 +8,10 @@ import {
 
 export default function Index() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
+  const backgroundImage = require("../assets/images/home-image.jpg")
 
   return fontsLoaded ? (<>
-  <Image source={require("../assets/images/home-image.jpg")} style={styles.background}/>
+  <Image source={backgroundImage} style={styles.background}/>
   <View style={styles.page}>
     <View style={styles.header}>
       <Text style={styles.title}>SESH</Text>
