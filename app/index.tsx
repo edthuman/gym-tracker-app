@@ -1,24 +1,43 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import HomeButtons from "./HomeButtons";
 import {
   useFonts,
   Ubuntu_500Medium,
   Ubuntu_400Regular
 } from '@expo-google-fonts/ubuntu';
+import { useState } from "react";
 
 export default function Index() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../assets/images/home-image.jpg")
 
+  const [modalVisible, setModalVisible] = useState(false)
+  
   return fontsLoaded ? (<>
-  <Image source={backgroundImage} style={styles.background}/>
-  <View style={styles.page}>
-    <View style={styles.header}>
-      <Text style={styles.title}>SESH</Text>
+    <Image source={backgroundImage} style={styles.background}/>
+    <View style={styles.page}>
+      <View style={styles.header}>
+        <Text style={styles.title}>SESH</Text>
+      </View>
+      <HomeButtons setModalVisible={setModalVisible}/>
     </View>
-    <HomeButtons/>
-  </View>
-  </>
+    <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible !== false}
+          onRequestClose={() => setModalVisible(false)}>
+            <View style={modalStyles.modalLayer}>
+              <View style={modalStyles.modalBox}>
+              <Text style={modalStyles.text}>You pressed {modalVisible}!</Text>
+              <Pressable
+                style={modalStyles.closeButton}
+                onPress={() => setModalVisible(!modalVisible)}>
+                <Text style={modalStyles.closeText}>Hide Modal</Text>
+              </Pressable>
+              </View>
+            </View>
+        </Modal>
+    </>
   ) : (
     <View style={styles.loadingView}>
       <Text style={styles.loadingMessage}>App loading...</Text>
@@ -72,3 +91,31 @@ const styles = StyleSheet.create({
     fontFamily: "Ubuntu_500Medium",
   }
 })
+
+const modalStyles = StyleSheet.create({
+  modalLayer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  modalBox: {
+    verticalAlign: "middle",
+    alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 30,
+  },
+  closeButton: {
+    padding: "5%",
+    backgroundColor: "red"
+  },
+  closeText: {
+    color: "white"
+  },
+  text: {
+    paddingBottom: "10%",
+    color: "black",
+    fontWeight: 'bold',
+    textAlign: 'center',
+  }
+});
