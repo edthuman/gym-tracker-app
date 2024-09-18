@@ -42,15 +42,16 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   header: {
+    paddingTop: "5%",
     alignItems: 'center',
     borderColor: "white"
   },
   title: {
     textAlign: "center",
-    backgroundColor: "#2f2b21",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    fontSize: 50,
+    backgroundColor: "black",
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    fontSize: 80,
     color: "white",
     fontFamily: "Ubuntu_500Medium",
     borderRadius: 9,
