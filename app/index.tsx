@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-
+import HomeButtons from "./HomeButtons";
 import {
   useFonts,
   Ubuntu_500Medium,
@@ -14,10 +14,7 @@ export default function Index() {
       <View style={styles.view} >
         <Text style={styles.text}>SESH</Text>
       </View>
-      <View style={styles.buttonsView}>
-        <Text style={styles.signUp}>Sign Up</Text>
-        <Text style={styles.logIn}>Log In</Text>
-      </View>
+      <HomeButtons/>
     </View>
   ) : (
     <View style={styles.loadingView}>
@@ -48,35 +45,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Ubuntu_500Medium",
     borderRadius: 9,
-    overflow: "hidden"
-  },
-  buttonsView: {
-    height: "35%",
-    justifyContent: "space-between",
-    backgroundColor: "pink",
-    paddingHorizontal: "8%",
-    paddingBottom: "5%"
-  },
-  signUp: {
-    textAlign: "center",
-    backgroundColor: "#539E75",
-    paddingVertical: 12,
-    fontSize: 50,
-    color: "white",
-    fontFamily: "Ubuntu_400Regular",
-    borderRadius: 9,
-    overflow: "hidden"
-  },
-  logIn: {
-    textAlign: "center",
-    paddingVertical: 12,
-    fontSize: 50,
-    color: "white",
-    fontFamily: "Ubuntu_400Regular",
-    borderRadius: 9,
-    borderColor: "white",
-    borderWidth: 4,
-    borderStyle: "dashed",
     overflow: "hidden"
   },
   loadingView: {
