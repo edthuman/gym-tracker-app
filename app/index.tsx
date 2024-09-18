@@ -1,4 +1,4 @@
-import { Alert, Image, ImageBackground, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import HomeButtons from "./HomeButtons";
 import {
   useFonts,
