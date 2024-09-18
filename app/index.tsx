@@ -11,7 +11,7 @@ export default function Index() {
   
   return fontsLoaded ? (
     <View style={styles.page}>
-      <View style={styles.view} >
+      <View style={styles.header} >
         <Text style={styles.text}>SESH</Text>
       </View>
       <HomeButtons/>
@@ -30,9 +30,8 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     justifyContent: "space-between"
   },
-  view: {
+  header: {
     backgroundColor: "red",
-    justifyContent: "flex-start",
     alignItems: 'center',
     borderColor: "white"
   },
@@ -53,6 +52,6 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
     justifyContent: "center",
     alignItems: 'center',
-    borderColor: "white",
+    borderColor: "white"
   }
 })
