@@ -13,11 +13,10 @@ export default function HomeButtons () {
 
 const styles = StyleSheet.create({
     buttonsView: {
-      height: "35%",
+      height: "31%",
       justifyContent: "space-between",
-      backgroundColor: "pink",
       paddingHorizontal: "8%",
-      paddingBottom: "5%"
+      paddingBottom: "2%"
     },
     signUp: {
       backgroundColor: "#539E75",
@@ -34,6 +33,6 @@ const styles = StyleSheet.create({
       textAlign: "center",
       color: "white",
       fontFamily: "Ubuntu_400Regular",
-      fontSize: 50,
+      fontSize: 42,
     }
   })
