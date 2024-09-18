@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import HomeButtons from "./HomeButtons";
 import {
   useFonts,
@@ -8,14 +8,16 @@ import {
 
 export default function Index() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
-  
-  return fontsLoaded ? (
-    <View style={styles.page}>
-      <View style={styles.header} >
-        <Text style={styles.title}>SESH</Text>
-      </View>
-      <HomeButtons/>
+
+  return fontsLoaded ? (<>
+  <Image source={require("../assets/images/home-image.jpg")} style={styles.background}/>
+  <View style={styles.page}>
+    <View style={styles.header}>
+      <Text style={styles.title}>SESH</Text>
     </View>
+    <HomeButtons/>
+  </View>
+  </>
   ) : (
     <View style={styles.loadingView}>
       <Text style={styles.loadingMessage}>App loading...</Text>
@@ -25,13 +27,20 @@ export default function Index() {
 
 const styles = StyleSheet.create({
   page: {
+    position: "absolute",
     paddingVertical: "5%",
     flex: 1,
-    backgroundColor: "green",
+    height: "100%",
+    width: "100%",
     justifyContent: "space-between"
   },
+  background: {
+    position: "absolute",
+    height: "100%",
+    width: "130%",
+    alignSelf: "center"
+  },
   header: {
-    backgroundColor: "red",
     alignItems: 'center',
     borderColor: "white"
   },
