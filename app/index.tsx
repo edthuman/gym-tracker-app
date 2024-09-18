@@ -28,8 +28,6 @@ const styles = StyleSheet.create({
     backgroundColor: "green"
   },
   view: {
-    flex: 1,
-    height: "30%",
     backgroundColor: "red",
     justifyContent: "flex-start",
     alignItems: 'center',
@@ -47,11 +45,11 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   },
   loadingView: {
-      flex: 1,
-      height: "30%",
-      backgroundColor: "blue",
-      justifyContent: "center",
-      alignItems: 'center',
-      borderColor: "white",
+    flex: 1,
+    height: "30%",
+    backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: 'center',
+    borderColor: "white",
   }
 })
