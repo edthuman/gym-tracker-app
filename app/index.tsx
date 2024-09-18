@@ -1,4 +1,4 @@
-import { Alert, Image, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, ImageBackground, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import HomeButtons from "./HomeButtons";
 import {
   useFonts,
@@ -14,7 +14,7 @@ export default function Index() {
   const [modalVisible, setModalVisible] = useState(false)
   
   return fontsLoaded ? (<>
-    <Image source={backgroundImage} style={styles.background}/>
+    <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background}/>
     <View style={styles.page}>
       <View style={styles.header}>
         <Text style={styles.title}>SESH</Text>
@@ -55,10 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   background: {
-    position: "absolute",
-    height: "100%",
-    width: "130%",
-    alignSelf: "center"
+    flex: 1
   },
   header: {
     paddingTop: "5%",
