@@ -13,10 +13,10 @@ export default function HomeButtons () {
 
 const styles = StyleSheet.create({
     buttonsView: {
-      height: "31%",
+      height: "29.5%",
       justifyContent: "space-between",
       paddingHorizontal: "8%",
-      paddingBottom: "2%"
+      paddingBottom: "3%"
     },
     signUp: {
       backgroundColor: "#539E75",
