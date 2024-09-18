@@ -1,11 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-export default function HomeButtons () {
-    return <View style={styles.buttonsView}>
-    <TouchableOpacity style={styles.signUp}>
+export default function HomeButtons (props: any) {
+  const {setModalVisible} = props
+
+  return <View style={styles.buttonsView}>
+    <TouchableOpacity style={styles.signUp} onPress={() => setModalVisible("sign up")}>
       <Text style={styles.text}>Sign Up</Text>
     </TouchableOpacity>
-    <TouchableOpacity style={styles.logIn}>
+    <TouchableOpacity style={styles.logIn} onPress={() => setModalVisible("log in")}>
       <Text style={styles.text}>Log In</Text>
     </TouchableOpacity>
   </View>
