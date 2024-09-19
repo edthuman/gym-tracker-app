@@ -1,5 +1,13 @@
 export type ModalVisible = false | "Sign Up" | "Log In"
 
+export type CurrentPage = "Home" | "WelcomePage"
+
+type SetCurrentPage = React.Dispatch<React.SetStateAction<CurrentPage>>
+
+export interface HomeProps {
+    setCurrentPage: SetCurrentPage
+}
+
 export interface HomeButtonsProps {
     setModalVisible: React.Dispatch<React.SetStateAction<ModalVisible>> 
 }
