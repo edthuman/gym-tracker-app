@@ -1,7 +1,7 @@
 import { HomeButtonProps } from "@/types";
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export function HomeButton({ text, setModalVisible, style }: HomeButtonProps) {
+export default function HomeButton({ text, setModalVisible, style }: HomeButtonProps) {
     return <Pressable style={[style, styles.button]} onPress={() => setModalVisible(text)}>
     <Text style={styles.text}>{text}</Text>
   </Pressable>
