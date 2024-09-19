@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 import { ModalVisible } from "@/types";
 
-export default function Index() {
+export default function Home() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../assets/images/home-image.jpg")
 
