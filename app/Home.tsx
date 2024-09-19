@@ -6,9 +6,9 @@ import {
   Ubuntu_400Regular
 } from '@expo-google-fonts/ubuntu';
 import { useState } from "react";
-import { ModalVisible } from "@/types";
+import { HomeProps, ModalVisible } from "@/types";
 
-export default function Home() {
+export default function Home({setCurrentPage}: HomeProps) {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../assets/images/home-image.jpg")
 
@@ -32,7 +32,7 @@ export default function Home() {
               <Text style={modalStyles.text}>You pressed {modalVisible}!</Text>
               <Pressable
                 style={modalStyles.closeButton}
-                onPress={() => setModalVisible(false)}>
+                onPress={() => setCurrentPage("WelcomePage")}>
                 <Text style={modalStyles.closeText}>Hide Modal</Text>
               </Pressable>
               </View>
