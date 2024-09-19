@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
         fontSize: 42,
     },
     button: {
-        borderRadius: 9
+        borderRadius: 11
     }
 })
