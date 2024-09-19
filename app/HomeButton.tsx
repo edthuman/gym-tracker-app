@@ -1,30 +1,13 @@
 import { HomeButtonProps } from "@/types";
 import { useRef } from "react";
 import { Animated, Pressable, StyleSheet, Text } from "react-native";
+import { flicker } from "./animations";
 
 export default function HomeButton({ text, setModalVisible, style }: HomeButtonProps) {
-    const buttonOpacity = useRef(new Animated.Value(1)).current;
+    const opacity = useRef(new Animated.Value(1)).current;
 
-    function flicker() {
-        const fadeOut = Animated.timing(buttonOpacity, {
-        toValue: 0.3,
-        duration: 250,
-        useNativeDriver: true,
-        delay: 0
-        });
-        
-        const fadeIn = Animated.timing(buttonOpacity, {
-        toValue: 1,
-        duration: 350,
-        useNativeDriver: true,
-        delay: 0.2
-        });
-
-        Animated.sequence([fadeOut, fadeIn]).start()
-    }
-
-    return <Pressable onPress={() => {flicker(); setModalVisible(text)}}>
-        <Animated.View style={[style, styles.button, {opacity: buttonOpacity}]}>
+    return <Pressable onPress={() => {flicker(opacity); setModalVisible(text)}}>
+        <Animated.View style={[style, styles.button, {opacity}]}>
             <Text style={styles.text}>{text}</Text>
         </Animated.View>
     </Pressable>
