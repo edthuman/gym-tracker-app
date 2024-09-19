@@ -6,12 +6,13 @@ import {
   Ubuntu_400Regular
 } from '@expo-google-fonts/ubuntu';
 import { useState } from "react";
+import { ModalVisible } from "@/types";
 
 export default function Index() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../assets/images/home-image.jpg")
 
-  const [modalVisible, setModalVisible ]  = useState< boolean | string >(false)
+  const [modalVisible, setModalVisible ] = useState<ModalVisible>(false)
   
   return fontsLoaded ? (<>
     <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background}/>
@@ -25,13 +26,13 @@ export default function Index() {
           animationType="slide"
           transparent={true}
           visible={modalVisible !== false}
-          onRequestClose={() => setModalVisible(false)}>
+          >
             <View style={modalStyles.modalLayer}>
               <View style={modalStyles.modalBox}>
               <Text style={modalStyles.text}>You pressed {modalVisible}!</Text>
               <Pressable
                 style={modalStyles.closeButton}
-                onPress={() => setModalVisible(!modalVisible)}>
+                onPress={() => setModalVisible(false)}>
                 <Text style={modalStyles.closeText}>Hide Modal</Text>
               </Pressable>
               </View>
