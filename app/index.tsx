@@ -11,7 +11,7 @@ export default function Index() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../assets/images/home-image.jpg")
 
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible ]  = useState< boolean | string >(false)
   
   return fontsLoaded ? (<>
     <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background}/>
