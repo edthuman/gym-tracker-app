@@ -12,10 +12,10 @@ export default function HomeButtons({ setModalVisible }: HomeButtonsProps) {
 
 const styles = StyleSheet.create({
     buttonsView: {
-      height: "29.5%",
+      height: "28%",
       justifyContent: "space-between",
       paddingHorizontal: "8%",
-      paddingBottom: "3%"
+      paddingBottom: "1%"
     },
     signUp: {
       backgroundColor: "#539E75",
