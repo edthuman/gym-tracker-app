@@ -1,7 +1,10 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-export default function HomeButtons (props: any) {
-  const {setModalVisible} = props
+interface HomeButtonsProps {
+  setModalVisible: React.Dispatch<React.SetStateAction<boolean | string>> 
+}
+
+export default function HomeButtons({ setModalVisible }: HomeButtonsProps) {
 
   return <View style={styles.buttonsView}>
     <Pressable style={styles.signUp} onPress={() => setModalVisible("sign up")}>
