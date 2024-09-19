@@ -1,15 +1,12 @@
 import { HomeButtonsProps } from "@/types"
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { StyleSheet, View } from "react-native"
+import { HomeButton } from "./HomeButton"
 
 export default function HomeButtons({ setModalVisible }: HomeButtonsProps) {
 
   return <View style={styles.buttonsView}>
-    <Pressable style={styles.signUp} onPress={() => setModalVisible("sign up")}>
-      <Text style={styles.text}>Sign Up</Text>
-    </Pressable>
-    <Pressable style={styles.logIn} onPress={() => setModalVisible("log in")}>
-      <Text style={styles.text}>Log In</Text>
-    </Pressable>
+    <HomeButton setModalVisible={setModalVisible} text={"Sign Up"} style={styles.signUp}/>
+    <HomeButton setModalVisible={setModalVisible} text={"Log In"} style={styles.logIn}/>
   </View>
 }
 
@@ -22,19 +19,10 @@ const styles = StyleSheet.create({
     },
     signUp: {
       backgroundColor: "#539E75",
-      borderRadius: 9
     },
     logIn: {
-      borderRadius: 9,
       borderStyle: "solid",
       borderWidth: 4,
       borderColor: "white"
-    },
-    text: {
-      paddingVertical: 12,
-      textAlign: "center",
-      color: "white",
-      fontFamily: "Ubuntu_400Regular",
-      fontSize: 42,
     }
   })
