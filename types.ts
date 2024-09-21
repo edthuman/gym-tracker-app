@@ -2,24 +2,31 @@ export type ModalVisible = false | "Sign Up" | "Log In"
 
 export type CurrentPage = "Home" | "WelcomePage"
 
-type SetCurrentPage = React.Dispatch<React.SetStateAction<CurrentPage>>
+export type SetCurrentPage = React.Dispatch<React.SetStateAction<CurrentPage>>
 
-export interface HomeProps {
+export type HomeProps = {
     setCurrentPage: SetCurrentPage
 }
 
-export interface HomeButtonsProps {
+export type User = {
+    username: string,
+    _id: string
+}
+
+export type SetUser = React.Dispatch<React.SetStateAction<User>>
+
+export type HomeButtonsProps = {
     setModalVisible: React.Dispatch<React.SetStateAction<ModalVisible>> 
 }
 
-interface HomeButtonStyle {
+type HomeButtonStyle = {
     backgroundColor?: string,
     borderColor?: string,
     borderStyle?: "solid" | "dotted" | "dashed" | undefined,
     borderWidth?: number
 }
 
-export interface HomeButtonProps {
+export type HomeButtonProps = {
     text: "Sign Up" | "Log In",
     setModalVisible: React.Dispatch<React.SetStateAction<ModalVisible>>,
     style: HomeButtonStyle
