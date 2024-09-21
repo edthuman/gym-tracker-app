@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import WelcomePage from "./WelcomePage";
 import Home from "./Home/Home";
 import PageContext from "@/hooks/PageContext";
-import CategoriesPage from "./CategoriesPage";
+import CategoriesPage from "./Categories/CategoriesPage";
 
 export default function Navigator() {
     const components = {
