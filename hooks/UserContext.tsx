@@ -2,7 +2,7 @@ import { SetUser, User } from '@/types';
 import React, { createContext } from 'react';
 
 type Context = React.Context<{
-    user: User
+    user: User,
     setUser?: SetUser
 }>
 
@@ -13,4 +13,5 @@ const UserContext: Context = createContext({
         _id: "guest"
     }
 })
+
 export default UserContext
