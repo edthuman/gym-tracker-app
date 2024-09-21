@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import WelcomePage from "./WelcomePage";
-import { CurrentPage } from "@/types";
 import Home from "./Home";
+import PageContext from "@/hooks/PageContext";
 
 export default function Navigator() {
-    const [currentPage, setCurrentPage] = useState<CurrentPage>("Home")
     const components = {
         "Home": Home,
         "WelcomePage": WelcomePage
     }
     
-    const CurrentPage = components[currentPage]
+    const {page} = useContext(PageContext)
 
-    return <CurrentPage setCurrentPage={setCurrentPage}/>
+    const CurrentPage = components[page]
+
+    return <CurrentPage/>
 }
