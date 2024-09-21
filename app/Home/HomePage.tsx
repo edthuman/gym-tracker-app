@@ -6,7 +6,7 @@ import {
   Ubuntu_400Regular
 } from '@expo-google-fonts/ubuntu';
 
-export default function Home() {
+export default function HomePage() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../../assets/images/home-image.jpg")
   

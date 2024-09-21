@@ -13,7 +13,7 @@ export default function RootLayout() {
     });
     const userContextValues = { user, setUser };
 
-    const [page, setPage] = useState<Page>("Home")
+    const [page, setPage] = useState<Page>("HomePage")
     const pageContextValues = {page, setPage}
 
     return (
