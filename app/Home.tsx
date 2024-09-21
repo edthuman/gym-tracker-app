@@ -1,18 +1,14 @@
-import { ImageBackground, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import HomeButtons from "./HomeButtons";
 import {
   useFonts,
   Ubuntu_500Medium,
   Ubuntu_400Regular
 } from '@expo-google-fonts/ubuntu';
-import { useState } from "react";
-import { HomeProps, ModalVisible } from "@/types";
 
-export default function Home({setCurrentPage}: HomeProps) {
+export default function Home() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
   const backgroundImage = require("../assets/images/home-image.jpg")
-
-  const [modalVisible, setModalVisible ] = useState<ModalVisible>(false)
   
   return fontsLoaded ? (<>
     <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background}/>
@@ -20,26 +16,9 @@ export default function Home({setCurrentPage}: HomeProps) {
       <View style={styles.header}>
         <Text style={styles.title}>SESH</Text>
       </View>
-      <HomeButtons setModalVisible={setModalVisible}/>
+      <HomeButtons/>
     </View>
-    <Modal
-          animationType="slide"
-          transparent={true}
-          visible={modalVisible !== false}
-          >
-            <View style={modalStyles.modalLayer}>
-              <View style={modalStyles.modalBox}>
-              <Text style={modalStyles.text}>You pressed {modalVisible}!</Text>
-              <Pressable
-                style={modalStyles.closeButton}
-                onPress={() => setCurrentPage("WelcomePage")}>
-                <Text style={modalStyles.closeText}>Hide Modal</Text>
-              </Pressable>
-              </View>
-            </View>
-        </Modal>
-    </>
-  ) : (
+  </>) : (
     <View style={styles.loadingView}>
       <Text style={styles.loadingMessage}>App loading...</Text>
     </View>
