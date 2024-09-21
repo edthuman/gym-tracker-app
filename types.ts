@@ -1,6 +1,6 @@
-export type CurrentPage = "Home" | "WelcomePage"
+export type Page = "Home" | "WelcomePage"
 
-export type SetCurrentPage = React.Dispatch<React.SetStateAction<CurrentPage>>
+export type SetPage = React.Dispatch<React.SetStateAction<Page>>
 
 export type User = {
     username: string,

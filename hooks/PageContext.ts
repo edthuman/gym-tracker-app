@@ -1,9 +1,9 @@
-import { CurrentPage, SetCurrentPage } from '@/types';
-import React, { createContext } from 'react';
+import { Page, SetPage } from '@/types';
+import { createContext } from 'react';
 
 type PageProps = {
-    page: CurrentPage,
-    setPage?: SetCurrentPage
+    page: Page,
+    setPage?: SetPage
 }
 
 

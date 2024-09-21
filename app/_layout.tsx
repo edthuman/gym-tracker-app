@@ -4,7 +4,7 @@ import Navigator from "./Navigator";
 import { useState } from "react";
 import UserContext from "../hooks/UserContext";
 import PageContext from "@/hooks/PageContext";
-import { CurrentPage } from "@/types";
+import { Page } from "@/types";
 
 export default function RootLayout() {
     const [user, setUser] = useState({
@@ -13,7 +13,7 @@ export default function RootLayout() {
     });
     const userContextValues = { user, setUser };
 
-    const [page, setPage] = useState<CurrentPage>("Home")
+    const [page, setPage] = useState<Page>("Home")
     const pageContextValues = {page, setPage}
 
     return (
