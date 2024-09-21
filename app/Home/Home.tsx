@@ -8,7 +8,7 @@ import {
 
 export default function Home() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
-  const backgroundImage = require("../assets/images/home-image.jpg")
+  const backgroundImage = require("../../assets/images/home-image.jpg")
   
   return fontsLoaded ? (<>
     <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.background}/>
