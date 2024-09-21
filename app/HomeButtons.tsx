@@ -1,12 +1,11 @@
-import { HomeButtonsProps } from "@/types"
 import { StyleSheet, View } from "react-native"
 import HomeButton from "./HomeButton"
 
-export default function HomeButtons({ setModalVisible }: HomeButtonsProps) {
+export default function HomeButtons() {
 
   return <View style={styles.buttonsView}>
-    <HomeButton setModalVisible={setModalVisible} text={"Sign Up"} style={styles.signUp}/>
-    <HomeButton setModalVisible={setModalVisible} text={"Log In"} style={styles.logIn}/>
+    <HomeButton text={"Sign Up"} style={styles.signUp}/>
+    <HomeButton text={"Log In"} style={styles.logIn}/>
   </View>
 }
 
