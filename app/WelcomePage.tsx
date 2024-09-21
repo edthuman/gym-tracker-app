@@ -1,27 +1,32 @@
+import PageContext from "@/hooks/PageContext"
+import { useContext } from "react"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-
 export default function WelcomePage() {
-    return <View style={styles.page}>
-        <View style={styles.headerBar}>
-            <Text style={styles.headerText}>Welcome back!</Text>
-        </View>
-        <View style={styles.lastActiveArea}>
-            <Text style={styles.lastActiveTitle}>Latest activity:</Text>
-            <View style={styles.lastActiveBody}>
-                <Text style={styles.lastActiveText}>19th September:</Text>
-                <Text style={[styles.lastActiveText]}>50kg Leg Press</Text>
+    const {setPage} = useContext(PageContext)
+
+    return setPage ? (
+        <View style={styles.page}>
+            <View style={styles.headerBar}>
+                <Text style={styles.headerText}>Welcome back!</Text>
+            </View>
+            <View style={styles.lastActiveArea}>
+                <Text style={styles.lastActiveTitle}>Latest activity:</Text>
+                <View style={styles.lastActiveBody}>
+                    <Text style={styles.lastActiveText}>19th September:</Text>
+                    <Text style={[styles.lastActiveText]}>50kg Leg Press</Text>
+                </View>
+            </View>
+            <View style={styles.buttonArea}>
+                <Pressable style={styles.button} onPress={()=> setPage("CategoriesPage")}>
+                    <Text style={styles.buttonText}>New Sesh</Text>
+                </Pressable>
+                <Pressable style={styles.button} onPress={()=>console.log("View Stats")}>
+                    <Text style={styles.buttonText}>View Stats</Text>
+                </Pressable>
             </View>
         </View>
-        <View style={styles.buttonArea}>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>New Sesh</Text>
-            </Pressable>
-            <Pressable style={styles.button}>
-                <Text style={styles.buttonText}>View Stats</Text>
-            </Pressable>
-        </View>
-    </View>
+    ) : null
 }
 
 const styles = StyleSheet.create({
