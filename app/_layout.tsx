@@ -1,20 +1,35 @@
-import { Stack } from "expo-router";
 import { StyleSheet } from "react-native";
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from "react-native-safe-area-context";
+import Navigator from "./Navigator";
+import { useState } from "react";
+import UserContext from "../hooks/UserContext";
+import PageContext from "@/hooks/PageContext";
+import { Page } from "@/types";
 
-export default function RootLayout() {  
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <Stack screenOptions={{ headerShown: false}}>
-        <Stack.Screen name="index"/>
-      </Stack>
-    </SafeAreaView>
-  );
+export default function RootLayout() {
+    const [user, setUser] = useState({
+        username: "guest",
+        _id: "guest",
+    });
+    const userContextValues = { user, setUser };
+
+    const [page, setPage] = useState<Page>("Home")
+    const pageContextValues = {page, setPage}
+
+    return (
+        <SafeAreaView style={styles.safeArea}>
+            <UserContext.Provider value={userContextValues}>
+                <PageContext.Provider value={pageContextValues}>
+                    <Navigator />
+                </PageContext.Provider>
+            </UserContext.Provider>
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: "green",
-  }
-})
+    safeArea: {
+        flex: 1,
+        backgroundColor: "green",
+    },
+});
