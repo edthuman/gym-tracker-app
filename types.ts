@@ -1,4 +1,4 @@
-export type Page = "Home" | "WelcomePage"
+export type Page = "Home" | "WelcomePage" | "CategoriesPage"
 
 export type SetPage = React.Dispatch<React.SetStateAction<Page>>
 
