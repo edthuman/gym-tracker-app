@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export default function CategoryButton({ category }: {category: string}) {
+type Category = "Weights" | "Cardio" | "Stretching"
+
+export default function CategoryButton({ category }: {category: Category}) {
     return <Pressable style={styles.button} onPress={() => console.log(category)}>
         <Text style={styles.text}>
             {`${category}`}
