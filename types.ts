@@ -9,6 +9,8 @@ export type User = {
 
 export type SetUser = React.Dispatch<React.SetStateAction<User>>
 
+export type Category = "Weights" | "Cardio" | "Stretching"
+
 type HomeButtonStyle = {
     backgroundColor?: string,
     borderColor?: string,
