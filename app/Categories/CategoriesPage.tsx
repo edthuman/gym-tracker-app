@@ -3,9 +3,9 @@ import CategoryButton from "./CategoryButton";
 
 export default function CategoriesPage() {
     return <View style={styles.page}>
-        <CategoryButton text={"Weights"}/>
-        <CategoryButton text={"Cardio"}/>
-        <CategoryButton text={"Stretching"}/>
+        <CategoryButton category={"Weights"}/>
+        <CategoryButton category={"Cardio"}/>
+        <CategoryButton category={"Stretching"}/>
     </View>
 }
 
