@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import WelcomePage from "./WelcomePage";
-import Home from "./Home";
 import PageContext from "@/hooks/PageContext";
+import CategoriesPage from "./Categories/CategoriesPage";
+import HomePage from "./Home/HomePage";
 
 export default function Navigator() {
     const components = {
-        "Home": Home,
-        "WelcomePage": WelcomePage
-    }
-    
-    const {page} = useContext(PageContext)
+        HomePage: HomePage,
+        WelcomePage: WelcomePage,
+        CategoriesPage: CategoriesPage,
+    };
 
-    const CurrentPage = components[page]
+    const { page } = useContext(PageContext);
 
-    return <CurrentPage/>
+    const CurrentPage = components[page];
+
+    return <CurrentPage />;
 }
