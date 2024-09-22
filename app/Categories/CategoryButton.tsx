@@ -1,12 +1,18 @@
+import PageContext from "@/hooks/PageContext";
 import { Category } from "@/types";
+import { useContext } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 
 export default function CategoryButton({ category }: {category: Category}) {
-    return <Pressable style={styles.button} onPress={() => console.log(category)}>
-        <Text style={styles.text}>
-            {`${category}`}
-        </Text>
-    </Pressable>
+    const {setPage} = useContext(PageContext)
+
+    return setPage? (
+        <Pressable style={styles.button} onPress={() => setPage(category)}>
+            <Text style={styles.text}>
+                {`${category}`}
+            </Text>
+        </Pressable>
+    ) : null
 }
 
 const styles = StyleSheet.create({
