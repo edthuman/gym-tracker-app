@@ -5,7 +5,7 @@ export default function CategoriesPage() {
     return <View style={styles.page}>
         <CategoryButton text={"Weights"}/>
         <CategoryButton text={"Cardio"}/>
-        <CategoryButton text={"Calisthenics"}/>
+        <CategoryButton text={"Stretching"}/>
     </View>
 }
 
