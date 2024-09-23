@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Navigator from "./Navigator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserContext from "../hooks/UserContext";
 import PageContext from "@/hooks/PageContext";
-import { Page } from "@/types";
+import { ExerciseWithCategory } from "@/types";
 
 export default function RootLayout() {
     const [user, setUser] = useState({
@@ -13,14 +13,21 @@ export default function RootLayout() {
     });
     const userContextValues = { user, setUser };
 
-    const [page, setPage] = useState<Page>("HomePage")
+    const [page, setPage] = useState<string>("HomePage")
     const pageContextValues = {page, setPage}
+
+    const [exercises, setExercises] = useState<ExerciseWithCategory[]>([])
+    useEffect(() => {
+      fetch("https://gym-app-0nbt.onrender.com/api/exercises")
+      .then(response => response.json())
+      .then(json => setExercises([...json.exercises]))
+    }, [])
 
     return (
         <SafeAreaView style={styles.safeArea}>
             <UserContext.Provider value={userContextValues}>
                 <PageContext.Provider value={pageContextValues}>
-                    <Navigator />
+                    <Navigator exercises={exercises}/>
                 </PageContext.Provider>
             </UserContext.Provider>
         </SafeAreaView>
