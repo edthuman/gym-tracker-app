@@ -3,7 +3,7 @@ import CategoryButton from "./CategoryButton";
 import { useContext } from "react";
 import PageContext from "@/hooks/PageContext";
 
-export default function CategoriesPage() {
+export default function CategoriesPage({categories}: {categories: string[]}) {
     const {setPage} = useContext(PageContext)
 
     return setPage ? (
@@ -13,9 +13,7 @@ export default function CategoriesPage() {
                     {"<--"} Go back
                 </Text>
             </Pressable>
-            <CategoryButton category={"Weights"}/>
-            <CategoryButton category={"Cardio"}/>
-            <CategoryButton category={"Stretching"}/>
+            {Object.keys(categories).map(category => <CategoryButton category={category} key={category}/>)}
         </View>
     ) : null
 }
