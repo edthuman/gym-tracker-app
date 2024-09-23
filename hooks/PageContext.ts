@@ -1,11 +1,10 @@
-import { Page, SetPage } from '@/types';
+import { SetPage } from '@/types';
 import { createContext } from 'react';
 
 type PageProps = {
-    page: Page,
+    page: string,
     setPage?: SetPage
 }
-
 
 const PageContext = createContext<PageProps>({
     page: "Home"
