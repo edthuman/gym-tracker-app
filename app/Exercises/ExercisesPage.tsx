@@ -7,6 +7,10 @@ import ExerciseButton from "./ExerciseButton";
 export default function ExercisesPage({category}: {category: any}) {
     const {setPage} = useContext(PageContext)
     const categoryName = Object.keys(category)[0]
+
+    const icons = {
+        default: require("../../assets/icons/dumbell.png")
+    }
     
     return setPage ? (
         <View style={styles.page}>
@@ -15,11 +19,11 @@ export default function ExercisesPage({category}: {category: any}) {
                     {"<-"} Go back
                 </Text>
             </Pressable>
-            <View style={styles.exercisesArea}>
-                <Text style={styles.title}>
+            <Text style={styles.title}>
                     {categoryName} Exercises:
                 </Text>
-                {category[categoryName].map((exercise: Exercise) => <ExerciseButton exercise={exercise} key={exercise.name}/>)}
+            <View style={styles.exercisesArea}>  
+                {category[categoryName].map((exercise: Exercise) => <ExerciseButton exercise={exercise} key={exercise.name} icons={icons}/>)}
             </View>
         </View>
     ) : null
@@ -44,7 +48,10 @@ const styles = StyleSheet.create({
         backgroundColor: "orange",
         flex: 3,
         marginBottom: "5%",
-        justifyContent: "space-between"
+        flexWrap: "wrap",
+        flexDirection: "row",
+        alignContent: "space-around",
+        justifyContent: "space-around"
     },
     title: {
         backgroundColor: "cyan",
