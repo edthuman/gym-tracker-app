@@ -4,16 +4,32 @@ import PageContext from "@/hooks/PageContext";
 import CategoriesPage from "./Categories/CategoriesPage";
 import HomePage from "./Home/HomePage";
 import ExercisesPage from "./Exercises/ExercisesPage";
-import { Category } from "@/types";
+import { Exercise, ExerciseWithCategory } from "@/types";
 
-export default function Navigator() {
+export default function Navigator({exercises}: {exercises: ExerciseWithCategory[]}) {
+    const categories: any = {}
+
+    exercises.forEach(exercise => {
+        const {_id, name, description, category, icon} = exercise
+        const exerciseToAdd: Exercise = {_id, name, description, icon}
+
+        if (!categories[category]) {
+            categories[category] = [exerciseToAdd]
+        } else {
+            categories[category].push(exerciseToAdd)
+        }
+    })
+
+    const categoryComponents: any = {}
+    Object.keys(categories).forEach((category) => {
+        categoryComponents[category] = ExercisesPage
+    })
+
     const components = {
         HomePage: HomePage,
         WelcomePage: WelcomePage,
         CategoriesPage: CategoriesPage,
-        Weights: ExercisesPage,
-        Cardio: ExercisesPage,
-        Stretching: ExercisesPage
+        ...categoryComponents
     };
 
     const { page } = useContext(PageContext);
@@ -21,13 +37,17 @@ export default function Navigator() {
     const CurrentPage = components[page];
     
     interface Props {
-        category?: Category
+        categories?: any[]
+        category?: any
     }
 
     const props: Props = {}
-    if (page === "Weights" || page === "Cardio" || page === "Stretching") {
-        // .includes method on an array of possible Category strings causes error querying with Page type
-        props.category = page
+    if (page === "CategoriesPage") {
+        props.categories = categories
+    }
+    if (Object.keys(categories).includes(page)) {
+        props.category = {}
+        props.category[page] = categories[page]
     }
 
     return <CurrentPage {...props}/>;
