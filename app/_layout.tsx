@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Navigator from "./Navigator";
 import { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ export default function RootLayout() {
         .then(json => setExercises([...json.exercises]))
     }, [])
 
-    return (
+    return exercises.length ? (
         <SafeAreaView style={styles.safeArea}>
             <UserContext.Provider value={userContextValues}>
                 <PageContext.Provider value={pageContextValues}>
@@ -31,7 +31,11 @@ export default function RootLayout() {
                 </PageContext.Provider>
             </UserContext.Provider>
         </SafeAreaView>
-    );
+    ) : (
+    <SafeAreaView style={styles.safeArea}>
+        <Text>Exercises Loading...</Text> 
+    </SafeAreaView>
+    )
 }
 
 const styles = StyleSheet.create({
