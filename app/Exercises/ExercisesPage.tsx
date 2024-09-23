@@ -1,10 +1,12 @@
 import PageContext from "@/hooks/PageContext";
-import { Category } from "@/types";
+import { Exercise } from "@/types";
 import { useContext } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import ExerciseButton from "./ExerciseButton";
 
-export default function ExercisesPage({category}: {category?: Category}) {
+export default function ExercisesPage({category}: {category: any}) {
     const {setPage} = useContext(PageContext)
+    const categoryName = Object.keys(category)[0]
     
     return setPage ? (
         <View style={styles.page}>
@@ -15,8 +17,9 @@ export default function ExercisesPage({category}: {category?: Category}) {
             </Pressable>
             <View style={styles.exercisesArea}>
                 <Text style={styles.title}>
-                    {category} Exercises:
+                    {categoryName} Exercises:
                 </Text>
+                {category[categoryName].map((exercise: Exercise) => <ExerciseButton exercise={exercise} key={exercise.name}/>)}
             </View>
         </View>
     ) : null
@@ -40,7 +43,8 @@ const styles = StyleSheet.create({
     exercisesArea: {
         backgroundColor: "orange",
         flex: 3,
-        marginBottom: "5%"
+        marginBottom: "5%",
+        justifyContent: "space-between"
     },
     title: {
         backgroundColor: "cyan",
