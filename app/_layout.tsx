@@ -18,9 +18,9 @@ export default function RootLayout() {
 
     const [exercises, setExercises] = useState<ExerciseWithCategory[]>([])
     useEffect(() => {
-      fetch("https://gym-app-0nbt.onrender.com/api/exercises")
-      .then(response => response.json())
-      .then(json => setExercises([...json.exercises]))
+        fetch("https://gym-app-0nbt.onrender.com/api/exercises")
+        .then(response => response.json())
+        .then(json => setExercises([...json.exercises]))
     }, [])
 
     return (
