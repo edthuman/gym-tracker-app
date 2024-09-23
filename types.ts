@@ -1,8 +1,4 @@
-export type Category = "Weights" | "Cardio" | "Stretching"
-
-export type Page = "HomePage" | "WelcomePage" | "CategoriesPage" | Category
-
-export type SetPage = React.Dispatch<React.SetStateAction<Page>>
+export type SetPage = React.Dispatch<React.SetStateAction<string>>
 
 export type User = {
     username: string,
