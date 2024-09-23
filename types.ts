@@ -22,3 +22,14 @@ export type HomeButtonProps = {
     text: "Sign Up" | "Log In",
     style: HomeButtonStyle
 }
+
+export interface Exercise {
+    _id: string,
+    name: string,
+    description: string,
+    icon: string
+}
+
+export interface ExerciseWithCategory extends Exercise {
+    category: string
+}
