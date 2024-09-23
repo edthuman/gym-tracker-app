@@ -1,9 +1,8 @@
 import PageContext from "@/hooks/PageContext";
-import { Category } from "@/types";
 import { useContext } from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
 
-export default function CategoryButton({ category }: {category: Category}) {
+export default function CategoryButton({category}: {category: string}) {
     const {setPage} = useContext(PageContext)
 
     return setPage? (
