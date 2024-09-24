@@ -4,29 +4,49 @@ import { useContext } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import ExerciseButton from "./ExerciseButton";
 
-export default function ExercisesPage({category}: {category: any}) {
-    const {setPage} = useContext(PageContext)
-    const categoryName = Object.keys(category)[0]
+export default function ExercisesPage({ category }: { category: any }) {
+    const { setPage } = useContext(PageContext);
+    const categoryName = Object.keys(category)[0];
 
     const icons = {
-        default: require("../../assets/icons/dumbell.png")
-    }
+        default: require("../../assets/icons/gym.png"),
+        "ab-crunch": require("../../assets/icons/ab-crunch.png"),
+        "bicep-curl": require("../../assets/icons/bicep-curl.png"),
+        "butterfly": require("../../assets/icons/butterfly.png"),
+        "calf-raise": require("../../assets/icons/building.png"),
+        "chest-fly": require("../../assets/icons/chest-fly.png"),
+        "cross-trainer": require("../../assets/icons/cross-trainer.png"),
+        "lateral": require("../../assets/icons/lateral.png"),
+        "leg-press": require("../../assets/icons/leg.png"),
+        "hip": require("../../assets/icons/workout.png"),
+        "pull-up": require("../../assets/icons/pull-up-bar.png"),
+        "rowing": require("../../assets/icons/rowing-machine.png"),
+        "shoulder-press": require("../../assets/icons/shoulder.png"),
+        "stairs": require("../../assets/icons/promotion.png"),
+        "stationary-bike": require("../../assets/icons/stationary-bike.png"),
+        "treadmill": require("../../assets/icons/treadmill.png")
+    } //require cannot use dynamic file paths
     
     return setPage ? (
         <View style={styles.page}>
-            <Pressable onPress={() => setPage("CategoriesPage")} style={styles.backButton}>
-                <Text>
-                    {"<-"} Go back
-                </Text>
+            <Pressable
+                onPress={() => setPage("CategoriesPage")}
+                style={styles.backButton}
+            >
+                <Text>{"<-"} Go back</Text>
             </Pressable>
-            <Text style={styles.title}>
-                    {categoryName} Exercises:
-                </Text>
-            <View style={styles.exercisesArea}>  
-                {category[categoryName].map((exercise: Exercise) => <ExerciseButton exercise={exercise} key={exercise.name} icons={icons}/>)}
+            <Text style={styles.title}>{categoryName} Exercises:</Text>
+            <View style={styles.exercisesArea}>
+                {category[categoryName].map((exercise: Exercise) => (
+                    <ExerciseButton
+                        exercise={exercise}
+                        key={exercise.name}
+                        icons={icons}
+                    />
+                ))}
             </View>
         </View>
-    ) : null
+    ) : null;
 }
 
 const styles = StyleSheet.create({
@@ -34,7 +54,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "blue",
         paddingHorizontal: "5%",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
     },
     backButton: {
         backgroundColor: "white",
@@ -42,7 +62,7 @@ const styles = StyleSheet.create({
         paddingVertical: "5%",
         width: "30%",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
     exercisesArea: {
         backgroundColor: "orange",
@@ -51,13 +71,12 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         flexDirection: "row",
         alignContent: "space-around",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
     },
     title: {
         backgroundColor: "cyan",
         textAlign: "center",
         paddingVertical: "3%",
-        fontSize: 20
-    }
-
-})
+        fontSize: 20,
+    },
+});
