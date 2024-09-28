@@ -24,23 +24,26 @@ export default function ExerciseButton({exercise, icons }: {exercise: Exercise, 
 const styles = StyleSheet.create({
     button: {
         backgroundColor: "magenta",
-        height: "30%",
-        width: "45%",
+        width: "100%",
+        height: 250,
         paddingVertical: "2%"
     },
     elements: {
+        marginVertical: "3%",
+        paddingVertical: "3%",
         height: "100%",
         backgroundColor: "grey",
         justifyContent: "space-around",
         alignItems: "center"
     },
     icon: {
-        height: "70%",
-        width: "70%",
+        height: "50%",
+        width: "50%",
         resizeMode: "contain"
     },
     name: {
-        fontSize: 25,
+        fontSize: 23,
+        backgroundColor: "white",
         textAlign: "center"
     }
 })
