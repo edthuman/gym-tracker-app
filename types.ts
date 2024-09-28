@@ -1,6 +1,4 @@
-export type Page = "HomePage" | "WelcomePage" | "CategoriesPage"
-
-export type SetPage = React.Dispatch<React.SetStateAction<Page>>
+export type SetPage = React.Dispatch<React.SetStateAction<string>>
 
 export type User = {
     username: string,
@@ -19,4 +17,15 @@ type HomeButtonStyle = {
 export type HomeButtonProps = {
     text: "Sign Up" | "Log In",
     style: HomeButtonStyle
+}
+
+export interface Exercise {
+    _id: string,
+    name: string,
+    description: string,
+    icon: string
+}
+
+export interface ExerciseWithCategory extends Exercise {
+    category: string
 }
