@@ -5,9 +5,13 @@ import CategoriesPage from "./Categories/CategoriesPage";
 import HomePage from "./Home/HomePage";
 import ExercisesPage from "./Exercises/ExercisesPage";
 import { Exercise, ExerciseWithCategory } from "@/types";
+import SingleExercisePage from "./Exercise/SingleExercisePage";
 
 export default function Navigator({exercises}: {exercises: ExerciseWithCategory[]}) {
     const categories: any = {}
+    const exerciseNames: string[] = []
+    const categoryComponents: any = {}
+    const exerciseComponents: any = {}
 
     exercises.forEach(exercise => {
         const {_id, name, description, category, icon} = exercise
@@ -15,21 +19,21 @@ export default function Navigator({exercises}: {exercises: ExerciseWithCategory[
 
         if (!categories[category]) {
             categories[category] = [exerciseToAdd]
+            categoryComponents[category] = ExercisesPage
         } else {
             categories[category].push(exerciseToAdd)
         }
-    })
 
-    const categoryComponents: any = {}
-    Object.keys(categories).forEach((category) => {
-        categoryComponents[category] = ExercisesPage
+        exerciseNames.push(exercise.name)
+        exerciseComponents[exercise.name] = SingleExercisePage
     })
 
     const components = {
         HomePage: HomePage,
         WelcomePage: WelcomePage,
         CategoriesPage: CategoriesPage,
-        ...categoryComponents
+        ...categoryComponents,
+        ...exerciseComponents
     };
 
     const { page } = useContext(PageContext);
@@ -38,7 +42,8 @@ export default function Navigator({exercises}: {exercises: ExerciseWithCategory[
     
     interface Props {
         categories?: any[]
-        category?: any
+        category?: any,
+        exercise?: ExerciseWithCategory
     }
 
     const props: Props = {}
@@ -48,6 +53,9 @@ export default function Navigator({exercises}: {exercises: ExerciseWithCategory[
     if (Object.keys(categories).includes(page)) {
         props.category = {}
         props.category[page] = categories[page]
+    }
+    if (exerciseNames.includes(page)) {
+        props.exercise = exercises.find(exercise => exercise.name === page)
     }
 
     return <CurrentPage {...props}/>;

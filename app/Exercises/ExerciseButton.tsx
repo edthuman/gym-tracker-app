@@ -1,7 +1,10 @@
+import PageContext from "@/hooks/PageContext";
 import { Exercise } from "@/types";
+import { useContext } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function ExerciseButton({exercise, icons }: {exercise: Exercise, icons: any}) {
+    const {setPage} = useContext(PageContext)
     const isIconFileValid = Object.keys(icons).includes(exercise.icon)
 
     let icon
@@ -10,15 +13,17 @@ export default function ExerciseButton({exercise, icons }: {exercise: Exercise, 
     } else {
         icon = icons.default
     }
-
-    return <Pressable style={styles.button} onPress={()=>console.log(exercise.name)}>
-        <View style={styles.elements}>
-            <Image source={icon} style={styles.icon}/>
-            <Text style={styles.name}>
-                {exercise.name}
-            </Text>
-        </View>
-    </Pressable>
+    
+    return setPage ? (
+        <Pressable style={styles.button} onPress={()=>setPage(exercise.name)}>
+            <View style={styles.elements}>
+                <Image source={icon} style={styles.icon}/>
+                <Text style={styles.name}>
+                    {exercise.name}
+                </Text>
+            </View>
+        </Pressable> 
+    ) : null
 }
 
 const styles = StyleSheet.create({

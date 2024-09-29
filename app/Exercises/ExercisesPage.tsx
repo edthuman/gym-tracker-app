@@ -4,29 +4,29 @@ import { useContext } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import ExerciseButton from "./ExerciseButton";
 
+const icons = {
+    default: require("../../assets/icons/gym.png"),
+    "ab-crunch": require("../../assets/icons/ab-crunch.png"),
+    "bicep-curl": require("../../assets/icons/bicep-curl.png"),
+    "butterfly": require("../../assets/icons/butterfly.png"),
+    "calf-raise": require("../../assets/icons/building.png"),
+    "chest-fly": require("../../assets/icons/chest-fly.png"),
+    "cross-trainer": require("../../assets/icons/cross-trainer.png"),
+    "lateral": require("../../assets/icons/lateral.png"),
+    "leg-press": require("../../assets/icons/leg.png"),
+    "hip": require("../../assets/icons/workout.png"),
+    "pull-up": require("../../assets/icons/pull-up-bar.png"),
+    "rowing": require("../../assets/icons/rowing-machine.png"),
+    "shoulder-press": require("../../assets/icons/shoulder.png"),
+    "stairs": require("../../assets/icons/promotion.png"),
+    "stationary-bike": require("../../assets/icons/stationary-bike.png"),
+    "treadmill": require("../../assets/icons/treadmill.png")
+} //require cannot use dynamic file paths
+
 export default function ExercisesPage({ category }: { category: any }) {
     const { setPage } = useContext(PageContext);
     const categoryName = Object.keys(category)[0];
 
-    const icons = {
-        default: require("../../assets/icons/gym.png"),
-        "ab-crunch": require("../../assets/icons/ab-crunch.png"),
-        "bicep-curl": require("../../assets/icons/bicep-curl.png"),
-        "butterfly": require("../../assets/icons/butterfly.png"),
-        "calf-raise": require("../../assets/icons/building.png"),
-        "chest-fly": require("../../assets/icons/chest-fly.png"),
-        "cross-trainer": require("../../assets/icons/cross-trainer.png"),
-        "lateral": require("../../assets/icons/lateral.png"),
-        "leg-press": require("../../assets/icons/leg.png"),
-        "hip": require("../../assets/icons/workout.png"),
-        "pull-up": require("../../assets/icons/pull-up-bar.png"),
-        "rowing": require("../../assets/icons/rowing-machine.png"),
-        "shoulder-press": require("../../assets/icons/shoulder.png"),
-        "stairs": require("../../assets/icons/promotion.png"),
-        "stationary-bike": require("../../assets/icons/stationary-bike.png"),
-        "treadmill": require("../../assets/icons/treadmill.png")
-    } //require cannot use dynamic file paths
-    
     return setPage ? (
         <View style={styles.page}>
             <Pressable
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     exercisesArea: {
         backgroundColor: "orange",
         marginBottom: "5%",
+        // flexWrap: "wrap",
         flexDirection: "column"
     },
     title: {
