@@ -16,13 +16,13 @@ export default function ExerciseButton({exercise, icons }: {exercise: Exercise, 
     
     return setPage ? (
         <Pressable style={styles.button} onPress={()=>setPage(exercise.name)}>
-            <View style={styles.elements}>
-                <Image source={icon} style={styles.icon}/>
+            <View style={styles.view}>
                 <Text style={styles.name}>
                     {exercise.name}
                 </Text>
+                <Image source={icon} style={styles.icon}/>
             </View>
-        </Pressable> 
+        </Pressable>
     ) : null
 }
 
@@ -30,25 +30,27 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: "magenta",
         width: "100%",
-        height: 250,
-        paddingVertical: "2%"
+        height: 90,
+        marginBottom: "3.5%"
     },
-    elements: {
-        marginVertical: "3%",
+    view: {
         paddingVertical: "3%",
         height: "100%",
         backgroundColor: "grey",
+        flexDirection: "row",
+        alignItems: "center",
         justifyContent: "space-around",
-        alignItems: "center"
+        paddingHorizontal: "20%"
     },
     icon: {
-        height: "50%",
-        width: "50%",
+        height: 55,
+        width: 60,
         resizeMode: "contain"
     },
     name: {
         fontSize: 23,
-        backgroundColor: "white",
-        textAlign: "center"
+        textAlign: "center",
+        marginRight: 75,
+        width: "80%"
     }
 })
