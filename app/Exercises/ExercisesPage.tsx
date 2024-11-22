@@ -65,8 +65,7 @@ const styles = StyleSheet.create({
     },
     exercisesArea: {
         backgroundColor: "orange",
-        marginBottom: "5%",
-        // flexWrap: "wrap",
+        paddingTop: "2%",
         flexDirection: "column"
     },
     title: {
