@@ -17,7 +17,7 @@ export default function RootLayout() {
     const pageContextValues = {page, setPage}
 
     const [exercises, setExercises] = useState<ExerciseWithCategory[]>([])
-    const apiURL = process.env.API_URL
+    const apiURL = process.env.EXPO_PUBLIC_API_URL
     useEffect(() => {
         fetch(`${apiURL}/exercises`)
         .then(response => response.json())
