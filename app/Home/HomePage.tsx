@@ -5,6 +5,7 @@ import {
   Ubuntu_500Medium,
   Ubuntu_400Regular
 } from '@expo-google-fonts/ubuntu';
+import Loading from "../Loading";
 
 export default function HomePage() {
   let [fontsLoaded] = useFonts({ Ubuntu_400Regular, Ubuntu_500Medium })
@@ -19,9 +20,7 @@ export default function HomePage() {
       <HomeButtons/>
     </View>
   </>) : (
-    <View style={styles.loadingView}>
-      <Text style={styles.loadingMessage}>App loading...</Text>
-    </View>
+    <Loading/>
   )
 }
 
@@ -52,20 +51,6 @@ const styles = StyleSheet.create({
     fontFamily: "Ubuntu_500Medium",
     borderRadius: 9,
     overflow: "hidden"
-  },
-  loadingView: {
-    flex: 1,
-    height: "30%",
-    backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: 'center',
-    borderColor: "white"
-  },
-  loadingMessage: {
-    textAlign: "center",
-    fontSize: 50,
-    color: "white",
-    fontFamily: "Ubuntu_500Medium",
   }
 })
 
