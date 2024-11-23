@@ -53,31 +53,3 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   }
 })
-
-const modalStyles = StyleSheet.create({
-  modalLayer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  modalBox: {
-    verticalAlign: "middle",
-    alignItems: "center",
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 30,
-  },
-  closeButton: {
-    padding: "5%",
-    backgroundColor: "red"
-  },
-  closeText: {
-    color: "white"
-  },
-  text: {
-    paddingBottom: "10%",
-    color: "black",
-    fontWeight: 'bold',
-    textAlign: 'center',
-  }
-});
