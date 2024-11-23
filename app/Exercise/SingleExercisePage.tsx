@@ -1,24 +1,43 @@
 import PageContext from "@/hooks/PageContext";
+import UserContext from "@/hooks/UserContext";
 import { ExerciseWithCategory } from "@/types";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Loading from "../Loading";
 
 export default function SingleExercisePage({ exercise }: {exercise: ExerciseWithCategory }) {
     const {setPage} = useContext(PageContext)
-    return setPage ? (
-    <View style={styles.page}>
-            <Pressable onPress={() => setPage(`${exercise.category}`)} style={styles.backButton}>
-                <Text>
-                    {"<--"} Go back
-                </Text>
+    const { user: { username }} = useContext(UserContext)
+    const apiURL = process.env.EXPO_PUBLIC_API_URL
+    const [diary, setDiary] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        fetch(`${apiURL}/diaries?username=${username}?exercise=${exercise.name}`)
+        .then(response => response.json())
+        .then(returnedDiary => {
+            setDiary(returnedDiary)
+            setIsLoading(false)
+        })
+    }, [])
+
+    return isLoading ? (
+        <Loading/>
+    ): (
+    setPage ? (
+        <View style={styles.page}>
+                <Pressable onPress={() => setPage(`${exercise.category}`)} style={styles.backButton}>
+                    <Text>
+                        {"<--"} Go back
+                    </Text>
+                </Pressable>
+            <Text style={styles.title}>{`${exercise.name}`}</Text>
+            <Text style={styles.description}>{`${exercise.description}`}</Text>
+            <Pressable style={styles.logButton} onPress={()=>{console.log(`${exercise.name} logged`)}}>
+                <Text style={styles.logText}>Log exercise</Text>
             </Pressable>
-        <Text style={styles.title}>{`${exercise.name}`}</Text>
-        <Text style={styles.description}>{`${exercise.description}`}</Text>
-        <Pressable style={styles.logButton} onPress={()=>{console.log(`${exercise.name} logged`)}}>
-            <Text style={styles.logText}>Log exercise</Text>
-        </Pressable>
-    </View>
-    ) : null
+        </View>
+    ) : null)
 }
 
 const styles = StyleSheet.create({
