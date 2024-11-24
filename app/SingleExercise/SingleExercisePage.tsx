@@ -4,6 +4,7 @@ import { Diary, ExerciseWithCategory } from "@/types";
 import { useContext, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Loading from "../Loading";
+import ExerciseLogger from "./ExerciseLogger";
 
 type DiaryResponse = Diary[] | { msg: string }
 
@@ -13,6 +14,7 @@ export default function SingleExercisePage({ exercise }: {exercise: ExerciseWith
     const apiURL = process.env.EXPO_PUBLIC_API_URL
     const [diary, setDiary] = useState<Diary | undefined>(undefined)
     const [isLoading, setIsLoading] = useState(true)
+    const [isLogging, setIsLogging] = useState(false)
 
     useEffect(() => {
         fetch(`${apiURL}/diaries?username=${username}&exercise=${exercise.name}`)
@@ -32,14 +34,15 @@ export default function SingleExercisePage({ exercise }: {exercise: ExerciseWith
     ): (
     setPage ? (
         <View style={styles.page}>
-                <Pressable onPress={() => setPage(`${exercise.category}`)} style={styles.backButton}>
-                    <Text>
-                        {"<--"} Go back
-                    </Text>
-                </Pressable>
+            {isLogging ? <ExerciseLogger exercise={exercise} diary={diary} isLogging={isLogging} setIsLogging={setIsLogging}/> : null}
+            <Pressable onPress={() => setPage(`${exercise.category}`)} style={styles.backButton}>
+                <Text>
+                    {"<--"} Go back
+                </Text>
+            </Pressable>
             <Text style={styles.title}>{`${exercise.name}`}</Text>
             <Text style={styles.description}>{`${exercise.description}`}</Text>
-            <Pressable style={styles.logButton} onPress={()=>{console.log(`${exercise.name} logged`)}}>
+            <Pressable style={styles.logButton} onPress={() => setIsLogging(true)}>
                 <Text style={styles.logText}>Log exercise</Text>
             </Pressable>
         </View>
