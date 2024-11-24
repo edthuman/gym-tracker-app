@@ -4,7 +4,7 @@ import { Diary, ExerciseWithCategory } from "@/types";
 import { useContext, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Loading from "../Loading";
-import ExerciseLogger from "./ExerciseLogger";
+import LogExerciseModal from "./LogExerciseModal";
 
 type DiaryResponse = Diary[] | { msg: string }
 
@@ -34,7 +34,7 @@ export default function SingleExercisePage({ exercise }: {exercise: ExerciseWith
     ): (
     setPage ? (
         <View style={styles.page}>
-            {isLogging ? <ExerciseLogger exercise={exercise} diary={diary} isLogging={isLogging} setIsLogging={setIsLogging}/> : null}
+            {isLogging ? <LogExerciseModal exercise={exercise} diary={diary} isLogging={isLogging} setIsLogging={setIsLogging}/> : null}
             <Pressable onPress={() => setPage(`${exercise.category}`)} style={styles.backButton}>
                 <Text>
                     {"<--"} Go back

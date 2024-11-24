@@ -2,7 +2,7 @@ import { Diary, ExerciseWithCategory } from "@/types";
 import React from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
-export default function ExerciseLogger({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
+export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
     return <Modal visible={isLogging} transparent={true}>
         <View style={styles.background}>
             <View style={styles.modal}>
