@@ -1,23 +1,9 @@
 import PageContext from "@/hooks/PageContext";
 import UserContext from "@/hooks/UserContext";
-import { ExerciseWithCategory } from "@/types";
+import { Diary, ExerciseWithCategory } from "@/types";
 import { useContext, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Loading from "../Loading";
-
-interface Log {
-    date: string
-    log: number
-}
-
-interface Diary {
-    id: string
-    exercise: string
-    username: string
-    log: Log[]
-    personalBest?: number
-    goal?: number
-}
 
 type DiaryResponse = Diary[] | { msg: string }
 

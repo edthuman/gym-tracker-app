@@ -29,3 +29,17 @@ export interface Exercise {
 export interface ExerciseWithCategory extends Exercise {
     category: string
 }
+
+interface Log {
+    date: string
+    log: number
+}
+
+export interface Diary {
+    id: string
+    exercise: string
+    username: string
+    log: Log[]
+    personalBest?: number
+    goal?: number
+}
