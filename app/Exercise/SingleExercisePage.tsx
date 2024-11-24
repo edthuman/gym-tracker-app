@@ -13,7 +13,7 @@ export default function SingleExercisePage({ exercise }: {exercise: ExerciseWith
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`${apiURL}/diaries?username=${username}?exercise=${exercise.name}`)
+        fetch(`${apiURL}/diaries?username=${username}&exercise=${exercise.name}`)
         .then(response => response.json())
         .then(returnedDiary => {
             setDiary(returnedDiary)
