@@ -5,18 +5,38 @@ import { useContext, useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Loading from "../Loading";
 
+interface Log {
+    date: string
+    log: number
+}
+
+interface Diary {
+    id: string
+    exercise: string
+    username: string
+    log: Log[]
+    personalBest?: number
+    goal?: number
+}
+
+type DiaryResponse = Diary[] | { msg: string }
+
 export default function SingleExercisePage({ exercise }: {exercise: ExerciseWithCategory }) {
     const {setPage} = useContext(PageContext)
     const { user: { username }} = useContext(UserContext)
     const apiURL = process.env.EXPO_PUBLIC_API_URL
-    const [diary, setDiary] = useState({})
+    const [diary, setDiary] = useState<Diary | undefined>(undefined)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         fetch(`${apiURL}/diaries?username=${username}&exercise=${exercise.name}`)
         .then(response => response.json())
-        .then(returnedDiary => {
-            setDiary(returnedDiary)
+        .then((returnedDiary: DiaryResponse) => {
+            const hasDiary = Array.isArray(returnedDiary)
+            if (hasDiary) {
+                // There is only one diary for the each username-exercise combination, so it is always element 0 
+                setDiary(returnedDiary[0])
+            } 
             setIsLoading(false)
         })
     }, [])
