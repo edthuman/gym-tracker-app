@@ -22,12 +22,12 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                     <Text style={styles.closeButtonText}>X</Text>
                 </Pressable>
                 <View style={styles.loggingForm}>
-                    <View>
-                        <Text>{logType}</Text>
+                    <View style={styles.inputElement}>
+                        <Text style={styles.inputLabel}>{logType}:</Text>
                         <TextInput style={styles.input} placeholder="0" value={formData.log} onChangeText={input => handleLogInput(input, setFormData)}></TextInput>
                     </View>
-                    <View>
-                        <Text>Date</Text>
+                    <View style={styles.inputElement}>
+                        <Text style={styles.inputLabel}>Date:</Text>
                         <DateTimePicker 
                             value={formData.date} 
                             mode="date"
@@ -83,8 +83,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     },
+    inputElement: {
+        flexDirection: "row",
+        marginBottom: 30
+    },
+    inputLabel: {
+        fontSize: 20,
+        width: "30%",
+        alignSelf: "center"
+    },
     input: {
-        width: 20,
-        backgroundColor: "white"
+        width: 130,
+        marginLeft: 10,
+        height: 35,
+        textAlign: "right",
+        paddingRight: 10,
     }
 })
