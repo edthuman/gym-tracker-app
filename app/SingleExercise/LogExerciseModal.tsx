@@ -1,16 +1,20 @@
 import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { handleLogInput } from "./single-exercise-event-handlers";
+import { handleDateInput, handleLogInput } from "./single-exercise-event-handlers";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { getDateOneMonthAgo } from "./single-exercise-utils";
 
 export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
     const { category } = exercise
+    const dateToday = new Date()
     const [formData, setFormData] = useState<LogFormData>({
-        date: new Date(),
+        date: dateToday,
         log: "0",
         units: category === "Strength" ? "kg" : "mins"
     })
     const logType = category === "Strength" ? "Weight" : (category === "mins" ? "Time" : "Distance") 
+
     return <Modal visible={isLogging} transparent={true}>
         <View style={styles.background}>
             <View style={styles.modal}>
@@ -21,6 +25,15 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                     <View>
                         <Text>{logType}</Text>
                         <TextInput style={styles.input} value={formData.log} onChangeText={input => handleLogInput(input, setFormData)}></TextInput>
+                    </View>
+                    <View>
+                        <Text>Date</Text>
+                        <DateTimePicker 
+                            value={formData.date} 
+                            mode="date"
+                            onChange={(e, date)=> handleDateInput(e, date, setFormData)} 
+                            minimumDate={getDateOneMonthAgo()} 
+                            maximumDate={dateToday}/>
                     </View>
                 </View>
             </View>
