@@ -1,8 +1,16 @@
 import { Diary, ExerciseWithCategory } from "@/types";
-import React from "react";
-import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { handleLogInput } from "./single-exercise-event-handlers";
 
 export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
+    const { category } = exercise
+    const [formData, setFormData] = useState({
+        date: new Date(),
+        log: "0",
+        units: category === "Strength" ? "kg" : "mins"
+    })
+    const logType = category === "Strength" ? "Weight" : (category === "mins" ? "Time" : "Distance") 
     return <Modal visible={isLogging} transparent={true}>
         <View style={styles.background}>
             <View style={styles.modal}>
@@ -10,7 +18,10 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                     <Text style={styles.closeButtonText}>X</Text>
                 </Pressable>
                 <View style={styles.loggingForm}>
-                    <Text>Form to log exercise goes here</Text>
+                    <View>
+                        <Text>{logType}</Text>
+                        <TextInput style={styles.input} value={formData.log} onChangeText={input => handleLogInput(input, setFormData)}></TextInput>
+                    </View>
                 </View>
             </View>
         </View>
@@ -58,5 +69,9 @@ const styles = StyleSheet.create({
         width: "100%",
         alignItems: "center",
         justifyContent: "center"
+    },
+    input: {
+        width: 20,
+        backgroundColor: "white"
     }
 })
