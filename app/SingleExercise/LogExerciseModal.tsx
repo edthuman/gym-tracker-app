@@ -10,7 +10,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
     const dateToday = new Date()
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
-        log: "0",
+        log: "",
         units: category === "Strength" ? "kg" : "mins"
     })
     const logType = category === "Strength" ? "Weight" : (category === "mins" ? "Time" : "Distance") 
@@ -24,7 +24,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                 <View style={styles.loggingForm}>
                     <View>
                         <Text>{logType}</Text>
-                        <TextInput style={styles.input} value={formData.log} onChangeText={input => handleLogInput(input, setFormData)}></TextInput>
+                        <TextInput style={styles.input} placeholder="0" value={formData.log} onChangeText={input => handleLogInput(input, setFormData)}></TextInput>
                     </View>
                     <View>
                         <Text>Date</Text>
