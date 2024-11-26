@@ -11,7 +11,7 @@ export function handleLogInput(input: string, setFormData: SetFormData) {
     setFormData(currentData => {
         return {
             ...currentData,
-            log: input === "" ? "0" : input
+            log: input
         }
     })
 }
