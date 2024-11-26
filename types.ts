@@ -43,3 +43,9 @@ export interface Diary {
     personalBest?: number
     goal?: number
 }
+
+export interface LogFormData {
+    date: Date,
+    log: string,
+    units: "kg" | "lbs" | "mins" | "km" | "miles"
+}
