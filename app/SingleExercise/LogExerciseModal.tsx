@@ -1,11 +1,11 @@
-import { Diary, ExerciseWithCategory } from "@/types";
+import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { handleLogInput } from "./single-exercise-event-handlers";
 
 export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
     const { category } = exercise
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<LogFormData>({
         date: new Date(),
         log: "0",
         units: category === "Strength" ? "kg" : "mins"
