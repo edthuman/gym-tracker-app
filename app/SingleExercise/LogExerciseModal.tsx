@@ -38,6 +38,9 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                             maximumDate={dateToday}
                         />
                     </View>
+                    <Pressable style={styles.submitButton} onPress={() => console.log("submitted!")}>
+                        <Text>Submit</Text>
+                    </Pressable>
                 </View>
             </View>
         </View>
@@ -108,5 +111,10 @@ const styles = StyleSheet.create({
     errorText: {
         marginTop: 5,
         backgroundColor: "white"
+    },
+    submitButton: {
+        backgroundColor: "orange",
+        padding: 10,
+        borderRadius: 3
     }
 })
