@@ -4,3 +4,8 @@ export function getDateOneMonthAgo(): Date {
     const dateMonthAgo = new Date(todayTimestamp - msInAMonth)
     return dateMonthAgo
 }
+
+export function getDateString(date: Date): string {
+    const dateString = date.toLocaleDateString()
+    return dateString.replaceAll("/", "-")
+}
