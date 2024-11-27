@@ -3,13 +3,13 @@ import { DateTimePickerEvent } from "@react-native-community/datetimepicker"
 
 type SetFormData = React.Dispatch<React.SetStateAction<LogFormData>>
 
-export function handleLogInput(input: string, setFormData: SetFormData) {
+export function handleLogInput(input: string, setFormData: SetFormData): { error: string } {
     const isInputNan = Number.isNaN(Number(input))
     if (isInputNan) {
-        return
+        return { error: "Log must be a number"}
     }
     if (Number(input) > 9999) {
-        return "Log must be below 10,000"
+        return { error: "Log must be below 10,000" }
     }
     setFormData(currentData => {
         return {
@@ -17,6 +17,7 @@ export function handleLogInput(input: string, setFormData: SetFormData) {
             log: input
         }
     })
+    return { error: "" }
 }
 
 export function handleDateInput(e: DateTimePickerEvent, date: Date | undefined, setFormData: SetFormData): void {
