@@ -1,5 +1,5 @@
-import { LogFormData } from "@/types"
-import { DateTimePickerEvent } from "@react-native-community/datetimepicker"
+import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
+import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 
 type SetFormData = React.Dispatch<React.SetStateAction<LogFormData>>
 
@@ -36,4 +36,21 @@ export function handleDateInput(e: DateTimePickerEvent, date: Date | undefined, 
             date: new Date(timestamp)
         }
     })
+}
+
+export function handleLogSubmit(diary: Diary | undefined, exercise: ExerciseWithCategory, formData: LogFormData) {
+    // check exercise name
+    // check username
+    // check log amount is a number
+
+    const apiURL = process.env.EXPO_PUBLIC_API_URL
+    if (!apiURL) {
+        // handle error
+    }
+    const diaryExists = diary !== undefined
+    if (diaryExists) {
+        // patch request to /diaries/_id
+    } else {
+        // post request with full diary object
+    }
 }
