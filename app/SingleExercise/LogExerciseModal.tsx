@@ -1,7 +1,7 @@
 import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import { handleDateInput, handleLogInput } from "./single-exercise-event-handlers";
+import { handleDateInput, handleLogInput, handleLogSubmit } from "./single-exercise-event-handlers";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getDateOneMonthAgo } from "./single-exercise-utils";
 
@@ -38,7 +38,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                             maximumDate={dateToday}
                         />
                     </View>
-                    <Pressable style={styles.submitButton} onPress={() => console.log("submitted!")}>
+                    <Pressable style={styles.submitButton} onPress={() => handleLogSubmit(diary, exercise, formData)}>
                         <Text>Submit</Text>
                     </Pressable>
                 </View>
