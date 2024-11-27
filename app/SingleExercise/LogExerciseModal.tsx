@@ -5,10 +5,11 @@ import { handleDateInput, handleLogInput, handleLogSubmit } from "./single-exerc
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { getDateOneMonthAgo } from "./single-exercise-utils";
 
-export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
+export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging, username}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>, username: string}) {
     const { category } = exercise
     const dateToday = new Date()
     const [logInputError, setLogInputError] = useState("")
+    const [submissionError, setSubmissionError] = useState("")
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
         log: "",
@@ -38,7 +39,8 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                             maximumDate={dateToday}
                         />
                     </View>
-                    <Pressable style={styles.submitButton} onPress={() => handleLogSubmit(diary, exercise, formData)}>
+                    {submissionError ? <Text>{submissionError}</Text> : null}
+                    <Pressable style={styles.submitButton} onPress={() => handleLogSubmit(username, diary, exercise, formData, setSubmissionError)}>
                         <Text>Submit</Text>
                     </Pressable>
                 </View>
