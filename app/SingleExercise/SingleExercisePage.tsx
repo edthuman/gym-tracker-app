@@ -6,7 +6,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Loading from "../Loading";
 import LogExerciseModal from "./LogExerciseModal";
 
-type DiaryResponse = Diary[] | { msg: string }
+type DiaryResponse = { diaries: Diary[] } | { msg: string }
 
 export default function SingleExercisePage({ exercise }: {exercise: ExerciseWithCategory }) {
     const {setPage} = useContext(PageContext)
@@ -19,12 +19,14 @@ export default function SingleExercisePage({ exercise }: {exercise: ExerciseWith
     useEffect(() => {
         fetch(`${apiURL}/diaries?username=${username}&exercise=${exercise.name}`)
         .then(response => response.json())
-        .then((returnedDiary: DiaryResponse) => {
-            const hasDiary = Array.isArray(returnedDiary)
-            if (hasDiary) {
+        .then((response: DiaryResponse)=> {
+            if (Object.keys(response).includes("diaries")) {
+                const { diaries } = response as { diaries: Diary[] }
                 // There is only one diary for the each username-exercise combination, so it is always element 0 
-                setDiary(returnedDiary[0])
-            } 
+                if (diaries[0]) {
+                    setDiary(diaries[0])
+                }
+            }
             setIsLoading(false)
         })
     }, [])
