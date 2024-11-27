@@ -10,7 +10,7 @@ export function handleLogInput(input: string, setFormData: SetFormData, setLogIn
         return
     }
     if (Number(input) > 9999) {
-        setLogInputError("Log must be below 10,000")
+        setLogInputError("Logs must be below 10,000")
         return
     }
     setFormData(currentData => {
