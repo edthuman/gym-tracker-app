@@ -8,6 +8,9 @@ export function handleLogInput(input: string, setFormData: SetFormData) {
     if (isInputNan) {
         return
     }
+    if (Number(input) > 9999) {
+        return "Log must be below 10,000"
+    }
     setFormData(currentData => {
         return {
             ...currentData,
