@@ -14,7 +14,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
         log: "",
         units: category === "Strength" ? "kg" : "mins"
     })
-    const logType = category === "Strength" ? "Weight" : (category === "mins" ? "Time" : "Distance") 
+    const logType = category === "Strength" ? "Weight" : "Time"
 
     return <Modal visible={isLogging} transparent={true}>
         <View style={styles.background}>
