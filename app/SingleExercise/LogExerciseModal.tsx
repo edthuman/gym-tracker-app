@@ -8,6 +8,7 @@ import { getDateOneMonthAgo } from "./single-exercise-utils";
 export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
     const { category } = exercise
     const dateToday = new Date()
+    const [logInputError, setLogInputError] = useState("")
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
         log: "",
@@ -24,7 +25,8 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                 <View style={styles.loggingForm}>
                     <View style={styles.inputElement}>
                         <Text style={styles.inputLabel}>{logType}:</Text>
-                        <TextInput style={styles.input} placeholder="0" value={formData.log} onChangeText={input => handleLogInput(input, setFormData)}></TextInput>
+                        <TextInput style={styles.input} placeholder="0" value={formData.log} onChangeText={input => handleLogInput(input, setFormData, setLogInputError)} />
+                        {logInputError ? <Text style={styles.errorText}>{logInputError}</Text> : null}
                     </View>
                     <View style={styles.inputElement}>
                         <Text style={styles.inputLabel}>Date:</Text>
@@ -33,7 +35,8 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                             mode="date"
                             onChange={(e, date)=> handleDateInput(e, date, setFormData)} 
                             minimumDate={getDateOneMonthAgo()} 
-                            maximumDate={dateToday}/>
+                            maximumDate={dateToday}
+                        />
                     </View>
                 </View>
             </View>
@@ -44,11 +47,6 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
 const styles = StyleSheet.create({
     background: {
         backgroundColor: "transparent",
-        height: "100%",
-        width: "100%"
-    },
-    border: {
-        backgroundColor: "blue",
         height: "100%",
         width: "100%"
     },
@@ -84,7 +82,13 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     inputElement: {
+        height: "10%",
+        backgroundColor: "magenta",
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
         flexDirection: "row",
+        flexWrap: "wrap",
         marginBottom: 30
     },
     inputLabel: {
@@ -95,8 +99,14 @@ const styles = StyleSheet.create({
     input: {
         width: 130,
         marginLeft: 10,
+        marginBottom: 0,
+        paddingBottom: 0,
         height: 35,
         textAlign: "right",
         paddingRight: 10,
+    },
+    errorText: {
+        marginTop: 5,
+        backgroundColor: "white"
     }
 })
