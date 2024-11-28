@@ -1,6 +1,7 @@
 import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { getDateString } from "./single-exercise-utils";
+import axios from "axios";
 
 type SetFormData = React.Dispatch<React.SetStateAction<LogFormData>>
 type StringStateSetter = React.Dispatch<React.SetStateAction<string>>
@@ -40,7 +41,7 @@ export function handleDateInput(e: DateTimePickerEvent, date: Date | undefined, 
     })
 }
 
-export function handleLogSubmit(username:string, diary: Diary | undefined, exercise: ExerciseWithCategory, formData: LogFormData, setError: StringStateSetter) {
+export async function handleLogSubmit(username:string, diary: Diary | undefined, exercise: ExerciseWithCategory, formData: LogFormData, setError: StringStateSetter, setHasLogged: React.Dispatch<React.SetStateAction<boolean>>) {
     setError("")
     if (!exercise.name) {
         setError("Something went wrong logging this exercise")
@@ -84,14 +85,14 @@ export function handleLogSubmit(username:string, diary: Diary | undefined, exerc
     const diaryToAdd: any = {}
     if (diaryExists) {
         diaryToAdd.logs = [{
-            log,
+            log: Number(log),
             date: getDateString(date)
         }]
     } else {
         diaryToAdd.username = username
         diaryToAdd.exercise = exercise.name
         diaryToAdd.logs = [{
-            log,
+            log: Number(log),
             date: getDateString(date)
         }]
     }
@@ -99,6 +100,16 @@ export function handleLogSubmit(username:string, diary: Diary | undefined, exerc
     if (diaryExists) {
         // patch request to /diaries/_id
     } else {
-        // post request with full diary object
+        const response = await axios.post(`${apiURL}/diaries`, diaryToAdd)
+            .then(response => response.data)
+            .catch(error => {
+                const { msg } = error.response.data
+                setError(msg)
+            })
+        if (response) {
+            setHasLogged(true)
+        } else {
+            setError("Something went wrong, please try again")
+        }
     }
 }
