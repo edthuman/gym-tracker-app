@@ -3,16 +3,16 @@ import { handleDateInput, handleLogInput, handleLogSubmit } from "./single-exerc
 import { getDateOneMonthAgo } from "./single-exercise-utils";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useContext, useState } from "react";
-import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
+import { BooleanStateSetter, Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import UserContext from "@/hooks/UserContext";
 
-export function LogExerciseForm({ diary, exercise }: { exercise: ExerciseWithCategory, diary: Diary | undefined }) {
+export function LogExerciseForm({ diary, exercise, setHasLogged }: { exercise: ExerciseWithCategory, diary: Diary | undefined, setHasLogged: BooleanStateSetter }) {
     const {user: { username }} = useContext(UserContext)
     const { category } = exercise
     const dateToday = new Date()
     const [logInputError, setLogInputError] = useState("")
     const [submissionError, setSubmissionError] = useState("")
-    const [hasLogged, setHasLogged] = useState(false)
+    
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
         log: "",

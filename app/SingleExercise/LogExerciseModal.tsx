@@ -1,16 +1,18 @@
 import { Diary, ExerciseWithCategory } from "@/types";
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { LogExerciseForm } from "./LogExerciseForm";
 
 export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
+    const [hasLogged, setHasLogged] = useState(false)
+
     return <Modal visible={isLogging} transparent={true}>
         <View style={styles.background}>
             <View style={styles.modal}>
                 <Pressable style={styles.closeButton} onPress={() => setIsLogging(false)}>
                     <Text style={styles.closeButtonText}>X</Text>
                 </Pressable>
-                <LogExerciseForm exercise={exercise} diary={diary}/>
+                <LogExerciseForm exercise={exercise} diary={diary} setHasLogged={setHasLogged}/>
             </View>
         </View>
     </Modal>
