@@ -1,12 +1,13 @@
+import { BooleanStateSetter } from "@/types";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-export function LogSuccessMessage() {
+export function LogSuccessMessage({ setIsLogging, setHasLogged }: { setIsLogging: BooleanStateSetter, setHasLogged: BooleanStateSetter }) {
     return <View>
         <Text style={styles.successMessage}>Log successfully added!</Text>
-        <Pressable onPress={()=>console.log("log again pressed")}>
+        <Pressable onPress={() => setHasLogged(false)}>
             <Text>Log again</Text>
         </Pressable>
-        <Pressable onPress={()=>console.log("close pressed")}>
+        <Pressable onPress={() => setIsLogging(false)}>
             <Text>Close</Text>
         </Pressable>
     </View>
