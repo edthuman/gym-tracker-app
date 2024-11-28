@@ -98,7 +98,17 @@ export async function handleLogSubmit(username:string, diary: Diary | undefined,
     }
     
     if (diaryExists) {
-        // patch request to /diaries/_id
+        const response = await axios.patch(`${apiURL}/diaries/${diary._id}`, diaryToAdd)
+            .then(response => response.data)
+            .catch(error => {
+                const { msg } = error.response.data
+                setError(msg)
+            })
+            if (!response) {
+                setError("Something went wrong, please try again")
+            } else {
+                setHasLogged(true)
+            }
     } else {
         const response = await axios.post(`${apiURL}/diaries`, diaryToAdd)
             .then(response => response.data)
