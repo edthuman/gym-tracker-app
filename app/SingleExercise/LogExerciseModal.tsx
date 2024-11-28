@@ -10,6 +10,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
     const dateToday = new Date()
     const [logInputError, setLogInputError] = useState("")
     const [submissionError, setSubmissionError] = useState("")
+    const [hasLogged, setHasLogged] = useState(false)
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
         log: "",
@@ -40,7 +41,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                         />
                     </View>
                     {submissionError ? <Text>{submissionError}</Text> : null}
-                    <Pressable style={styles.submitButton} onPress={() => handleLogSubmit(username, diary, exercise, formData, setSubmissionError)}>
+                    <Pressable style={styles.submitButton} onPress={() => handleLogSubmit(username, diary, exercise, formData, setSubmissionError, setHasLogged)}>
                         <Text>Submit</Text>
                     </Pressable>
                 </View>
