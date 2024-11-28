@@ -1,4 +1,4 @@
-import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
+import { BooleanStateSetter, Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import { DateTimePickerEvent } from "@react-native-community/datetimepicker";
 import { getDateString } from "./single-exercise-utils";
 import axios from "axios";
@@ -41,7 +41,7 @@ export function handleDateInput(e: DateTimePickerEvent, date: Date | undefined, 
     })
 }
 
-export async function handleLogSubmit(username:string, diary: Diary | undefined, exercise: ExerciseWithCategory, formData: LogFormData, setError: StringStateSetter, setHasLogged: React.Dispatch<React.SetStateAction<boolean>>) {
+export async function handleLogSubmit(username:string, diary: Diary | undefined, exercise: ExerciseWithCategory, formData: LogFormData, setError: StringStateSetter, setHasLogged: BooleanStateSetter) {
     setError("")
     if (!exercise.name) {
         setError("Something went wrong logging this exercise")
