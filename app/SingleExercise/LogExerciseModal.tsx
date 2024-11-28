@@ -2,6 +2,7 @@ import { Diary, ExerciseWithCategory } from "@/types";
 import React, { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { LogExerciseForm } from "./LogExerciseForm";
+import { LogSuccessMessage } from "./LogSuccessMessage";
 
 export default function LogExerciseModal({exercise, diary, isLogging, setIsLogging}: {exercise: ExerciseWithCategory, diary: Diary | undefined, isLogging: boolean, setIsLogging: React.Dispatch<React.SetStateAction<boolean>>}) {
     const [hasLogged, setHasLogged] = useState(false)
@@ -13,9 +14,9 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                     <Text style={styles.closeButtonText}>X</Text>
                 </Pressable>
                 {hasLogged ? (
-                    <Text style={styles.successMessage}>Log successfully added!</Text>
+                    <LogSuccessMessage />
                 ) : (
-                    <LogExerciseForm exercise={exercise} diary={diary} setHasLogged={setHasLogged}/>
+                    <LogExerciseForm exercise={exercise} diary={diary} setHasLogged={setHasLogged} />
                 )}
             </View>
         </View>
@@ -51,13 +52,5 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "white",
         fontWeight: "bold"
-    },
-    successMessage: {
-        backgroundColor: "blue",
-        height: "90%",
-        fontSize: 20,
-        textAlign: "center",
-        textAlignVertical: "center",
-        paddingVertical: "70%"
     }
 })
