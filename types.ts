@@ -49,3 +49,5 @@ export interface LogFormData {
     log: string,
     units: "kg" | "lbs" | "mins" | "km" | "miles"
 }
+
+export type BooleanStateSetter = React.Dispatch<React.SetStateAction<boolean>>
