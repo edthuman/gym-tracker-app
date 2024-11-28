@@ -2,10 +2,12 @@ import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { handleDateInput, handleLogInput, handleLogSubmit } from "./single-exercise-event-handlers";
 import { getDateOneMonthAgo } from "./single-exercise-utils";
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Diary, ExerciseWithCategory, LogFormData } from "@/types";
+import UserContext from "@/hooks/UserContext";
 
-export function LogExerciseForm({username, diary, exercise}: {username: string, exercise: ExerciseWithCategory, diary: Diary | undefined,}) {
+export function LogExerciseForm({ diary, exercise }: { exercise: ExerciseWithCategory, diary: Diary | undefined }) {
+    const {user: { username }} = useContext(UserContext)
     const { category } = exercise
     const dateToday = new Date()
     const [logInputError, setLogInputError] = useState("")
