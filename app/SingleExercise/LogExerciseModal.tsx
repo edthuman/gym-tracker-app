@@ -12,7 +12,11 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
                 <Pressable style={styles.closeButton} onPress={() => setIsLogging(false)}>
                     <Text style={styles.closeButtonText}>X</Text>
                 </Pressable>
-                <LogExerciseForm exercise={exercise} diary={diary} setHasLogged={setHasLogged}/>
+                {hasLogged ? (
+                    <Text style={styles.successMessage}>Log successfully added!</Text>
+                ) : (
+                    <LogExerciseForm exercise={exercise} diary={diary} setHasLogged={setHasLogged}/>
+                )}
             </View>
         </View>
     </Modal>
@@ -47,5 +51,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "white",
         fontWeight: "bold"
+    },
+    successMessage: {
+        backgroundColor: "blue",
+        height: "90%",
+        fontSize: 20,
+        textAlign: "center",
+        textAlignVertical: "center",
+        paddingVertical: "70%"
     }
 })
