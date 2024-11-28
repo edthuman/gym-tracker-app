@@ -6,6 +6,12 @@ export function getDateOneMonthAgo(): Date {
 }
 
 export function getDateString(date: Date): string {
-    const dateString = date.toLocaleDateString()
-    return dateString.replaceAll("/", "-")
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1 // zero-indexed
+    const formattedMonth = String(month).length === 1 ? `0${month}` : month
+    const day = date.getDate()
+    const formattedDay = String(day).length === 1 ? `0${day}` : day
+    
+    const dateString = `${formattedDay}-${formattedMonth}-${year}`
+    return dateString
 }
