@@ -36,7 +36,7 @@ export default function SingleExercisePage({ exercise }: {exercise: ExerciseWith
     ): (
     setPage ? (
         <View style={styles.page}>
-            {isLogging ? <LogExerciseModal exercise={exercise} diary={diary} isLogging={isLogging} setIsLogging={setIsLogging} username={username}/> : null}
+            {isLogging ? <LogExerciseModal exercise={exercise} diary={diary} isLogging={isLogging} setIsLogging={setIsLogging} /> : null}
             <Pressable onPress={() => setPage(`${exercise.category}`)} style={styles.backButton}>
                 <Text>
                     {"<--"} Go back
