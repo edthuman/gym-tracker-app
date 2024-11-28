@@ -36,7 +36,7 @@ interface Log {
 }
 
 export interface Diary {
-    id: string
+    _id: string
     exercise: string
     username: string
     log: Log[]
