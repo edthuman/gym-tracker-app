@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { useContext, useState } from "react";
 import { BooleanStateSetter, Diary, ExerciseWithCategory, LogFormData } from "@/types";
 import UserContext from "@/hooks/UserContext";
+import { UnitsDropdown } from "./UnitsDropdown";
 
 export function LogExerciseForm({ diary, exercise, setHasLogged }: { exercise: ExerciseWithCategory, diary: Diary | undefined, setHasLogged: BooleanStateSetter }) {
     const {user: { username }} = useContext(UserContext)
@@ -12,6 +13,7 @@ export function LogExerciseForm({ diary, exercise, setHasLogged }: { exercise: E
     const dateToday = new Date()
     const [logInputError, setLogInputError] = useState("")
     const [submissionError, setSubmissionError] = useState("")
+    const [units, setUnits] = useState(category === "Strength" ? "kg" : "mins")
     
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
@@ -24,6 +26,7 @@ export function LogExerciseForm({ diary, exercise, setHasLogged }: { exercise: E
         <View style={styles.inputElement}>
             <Text style={styles.inputLabel}>{logType}:</Text>
             <TextInput style={styles.input} placeholder="0" value={formData.log} onChangeText={input => handleLogInput(input, setFormData, setLogInputError)} />
+            <UnitsDropdown category={category} units={units} setUnits={setUnits} />
             {logInputError ? <Text style={styles.errorText}>{logInputError}</Text> : null}
         </View>
         <View style={styles.inputElement}>
