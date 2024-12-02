@@ -25,7 +25,7 @@ export default function LogExerciseModal({exercise, diary, isLogging, setIsLoggi
 
 const styles = StyleSheet.create({
     background: {
-        backgroundColor: "transparent",
+        backgroundColor: "rgba(255, 255, 255, 0.65)",
         height: "100%",
         width: "100%"
     },
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         marginVertical: "auto",
         marginHorizontal: "auto",
         justifyContent: "space-between",
-        height: "90%",
+        height: "50%",
         width: "90%"
     },
     closeButton: {
