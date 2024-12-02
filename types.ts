@@ -46,8 +46,7 @@ export interface Diary {
 
 export interface LogFormData {
     date: Date,
-    log: string,
-    units: "kg" | "lbs" | "mins" | "km" | "miles"
+    log: string
 }
 
 export type BooleanStateSetter = React.Dispatch<React.SetStateAction<boolean>>
