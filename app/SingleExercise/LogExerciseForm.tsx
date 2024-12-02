@@ -17,8 +17,7 @@ export function LogExerciseForm({ diary, exercise, setHasLogged }: { exercise: E
     
     const [formData, setFormData] = useState<LogFormData>({
         date: dateToday,
-        log: "",
-        units: category === "Strength" ? "kg" : "mins"
+        log: ""
     })
     const logType = category === "Strength" ? "Weight" : "Time"
     
