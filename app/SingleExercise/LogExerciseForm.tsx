@@ -48,13 +48,13 @@ export function LogExerciseForm({ diary, exercise, setHasLogged }: { exercise: E
 const styles = StyleSheet.create({
     loggingForm: {
         backgroundColor: "blue",
-        height: "93%",
+        height: "90%",
         width: "100%",
         alignItems: "center",
         justifyContent: "center"
     },
     inputElement: {
-        height: "10%",
+        height: "20%",
         backgroundColor: "magenta",
         justifyContent: "center",
         alignItems: "center",
@@ -69,11 +69,12 @@ const styles = StyleSheet.create({
         alignSelf: "center"
     },
     input: {
-        width: 130,
+        width: 68,
         marginLeft: 10,
         marginBottom: 0,
         paddingBottom: 0,
         height: 35,
+        fontSize: 18,
         textAlign: "right",
         paddingRight: 10,
     },
