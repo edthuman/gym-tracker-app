@@ -29,3 +29,24 @@ export interface Exercise {
 export interface ExerciseWithCategory extends Exercise {
     category: string
 }
+
+interface Log {
+    date: string
+    log: number
+}
+
+export interface Diary {
+    _id: string
+    exercise: string
+    username: string
+    log: Log[]
+    personalBest?: number
+    goal?: number
+}
+
+export interface LogFormData {
+    date: Date,
+    log: string
+}
+
+export type BooleanStateSetter = React.Dispatch<React.SetStateAction<boolean>>

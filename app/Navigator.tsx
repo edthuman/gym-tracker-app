@@ -5,7 +5,7 @@ import CategoriesPage from "./Categories/CategoriesPage";
 import HomePage from "./Home/HomePage";
 import ExercisesPage from "./Exercises/ExercisesPage";
 import { Exercise, ExerciseWithCategory } from "@/types";
-import SingleExercisePage from "./Exercise/SingleExercisePage";
+import SingleExercisePage from "./SingleExercise/SingleExercisePage";
 
 export default function Navigator({exercises}: {exercises: ExerciseWithCategory[]}) {
     const categories: any = {}

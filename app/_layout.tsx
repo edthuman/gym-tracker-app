@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import UserContext from "../hooks/UserContext";
 import PageContext from "@/hooks/PageContext";
 import { ExerciseWithCategory } from "@/types";
+import Loading from "./Loading";
 
 export default function RootLayout() {
     const [user, setUser] = useState({
@@ -34,7 +35,7 @@ export default function RootLayout() {
         </SafeAreaView>
     ) : (
     <SafeAreaView style={styles.safeArea}>
-        <Text>Exercises Loading...</Text> 
+        <Loading/>
     </SafeAreaView>
     )
 }
